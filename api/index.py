@@ -5,7 +5,25 @@ import os
 import base64
 import uuid
 
-app = Flask(__name__)
+# Compute absolute paths from this file's location rather than relying on
+# Flask's relative-path resolution (which depends on how/where the script
+# is launched). templates/ lives inside api/ (not at the project root)
+# because Vercel only reliably bundles files inside the api/ directory
+# into the deployed function — a sibling templates/ folder gets left out.
+HERE = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(HERE)
+TEMPLATE_DIR = os.path.join(HERE, "templates")
+PUBLIC_DIR = os.path.join(BASE_DIR, "public")
+
+# This also runs correctly with a plain `python index.py` in VS Code, not
+# just on Vercel (Vercel serves public/ via its own filesystem routing and
+# ignores this, so it's safe to set for both environments).
+app = Flask(
+    __name__,
+    static_folder=PUBLIC_DIR,
+    static_url_path="",
+    template_folder=TEMPLATE_DIR,
+)
 
 
 @app.route("/")
@@ -66,4 +84,4 @@ def translate():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="127.0.0.1", port=5000)
