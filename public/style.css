@@ -1,0 +1,361 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&family=Outfit:wght@100..900&family=Parisienne&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');/* General Page Styling */
+body {
+    font-family: 'Prompt';
+    background-color: rgb(248, 248, 245);
+    color: #f85909;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Background video styling */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire background */
+    z-index: -10; /* Makes sure video stays behind other content */
+    filter: blur(10px);
+}
+
+.head{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    background-color:#1010108a ;
+    backdrop-filter:blur(100px) ;
+    justify-content: space-between;
+    width: 100%;
+    position:fixed;
+    top: 0;
+    z-index:1;
+}
+
+.head-left{
+    display: flex;
+    align-items: center;
+}
+.head-left i{
+    padding: 0 15px;
+    margin-left: 50px;
+    font-size: 25px;
+
+}
+.head-left h1{
+    color: white;
+    font-family: venite;
+    background-image: linear-gradient(to bottom right,#F85809, black );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    align-self: center;
+    font-size: 3rem;
+}
+
+.head button{
+    padding: 10px 50px;
+    right: 50px;
+    text-decoration: none;
+    color: white;
+    background-color:#F85809;
+    border-radius: 40px;
+    border: 0;
+    text-align: center; 
+    font-size: 20px;
+    font-family:'Lexend Zetta';
+    margin-right: 50px;
+}
+#overlay{
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+.login-form{
+    font-family: 'Prompt';
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:450px;
+    height: 500px;
+    padding: 20px 30px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    transition: ease-in 0.5s;
+}
+.underline{
+    background-color: #F85809;
+    padding: 2px;
+    margin: 0px 40px;
+}
+.login-form h2{
+    text-align: center;
+    color: #222;
+    font-family: 'Prompt';
+    margin: 10px 0px 20px;
+    font-size: 30px;
+}
+.login-form .element{
+    margin: 20px 0px;
+    text-align: left;
+}
+.login-form .element label{
+    font-size: 18px;
+    color: #222;
+    font-family: 'Prompt';
+    text-align: left;
+}
+.element input[type="text"],.element input[type="password"]{
+    font-size: 18px;
+    font-family: 'Prompt';
+    margin: 5px;
+    display: block;
+    width: 90%;
+    padding: 15px;
+    outline: none;
+    border:none;
+    border-bottom: 2px solid #4a4949c3;
+}
+.element input[type="checkbox"]{
+    margin-right: 5px;
+    padding: 4px;
+}
+.login-form .element button{
+    width: 100%;
+    height: 50px;
+    font-family: 'Prompt';
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: #f85909;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.login-form .element a{
+    display: block;
+    text-align: center;
+    font-family: 'Prompt';
+    font-size: 18px;
+    color: rgb(2, 144, 205);
+}
+.nav-menu{
+    padding:10px 8px;
+    background-color:#15e9cd73;
+    color: black;
+    align-items: center;
+    left:25%;
+    right:25%;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 60px;
+    backdrop-filter: blur(50px);
+    position: fixed;
+    top: 120px;
+    z-index: 2;
+    align-content: center;
+    text-align: center;
+}
+
+.nav-menu  li{
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 20px;
+    margin-right: 50px;
+    margin-left: 50px;
+    align-content: center;
+}
+.nav-items a{
+    display: flex;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat Alternates';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+/* Speech Translator Container */
+.container {
+    display:inline-block;
+    margin-top: 250px;
+    padding: 20px;
+    width:50%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.174);
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+    z-index: 5;
+}
+
+/* Header */
+
+.container h2 {
+    font-size: 60px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(45deg, #fbfbfb, #fffffe);
+    letter-spacing: 10px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowingText 1s infinite alternate;
+    position: relative;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 1s ease-in-out forwards, glowingText 2s infinite alternate;
+}
+
+/* 🎇 Glowing Text Effect */
+@keyframes glowingText {
+    0% { text-shadow: 0 0 5px rgba(20, 162, 2, 0.8); }
+    50% {text-shadow: 0 0 10px rgba(1, 30, 176, 0.847);}
+    100% { text-shadow: 0 0 15px rgb(251, 37, 4); }
+}
+
+/* 🎭 Smooth Fade-in Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-100px); }
+    50% { opacity:0.5; transform: translateY(100px);}
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+label{
+    font-size: 30px;
+}
+
+/* Language Dropdown */
+/* Custom Select Box */
+#language {
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Add a custom dropdown arrow */
+#language {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+/* On Hover */
+#language:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* On Focus */
+#language:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Custom Option Styles */
+#language option {
+    background: #222;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Option Hover */
+#language option:hover {
+    background: #ff6f61;
+    color: white;
+}
+
+/* Start Recording Button */
+/* Glassy Button */
+.glassy-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(254, 102, 15, 0.789), rgba(74, 8, 253, 0.394));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display:inline-block;
+    gap: 10px;
+    
+}
+
+/* Hover Effect */
+.glassy-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Click Animation */
+.glassy-button:active {
+    transform: scale(2);
+}
+
+/* Button Ripple Effect */
+.glassy-button::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease-out;
+}
+
+.glassy-button:active::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Speech Text Output */
+.text-output {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 98%;
+    
+}
+
+/* Audio Player */
+audio {
+    margin-top: 15px;
+    width: 50%;
+}

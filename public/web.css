@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&family=Outfit:wght@100..900&family=Parisienne&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,::after,::before{
+    margin: 0%;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+body{
+    background-color: #ededed;
+    position: relative;
+    
+}
+hr{
+    color: #f85909;
+    border: 1px solid #F85809;
+
+}
+.head{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    background-color:#1010108a ;
+    backdrop-filter:blur(100px) ;
+    justify-content: space-between;
+    width: 100%;
+    position:fixed;
+    top: 0;
+    z-index:1;
+}
+
+.head-left{
+    display: flex;
+    align-items: center;
+}
+.head-left i{
+    padding: 0 15px;
+    margin-left: 50px;
+    font-size: 25px;
+
+}
+.head-left h1{
+    color: white;
+    font-family: venite;
+    background-image: linear-gradient(to bottom right,#F85809, black );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    align-self: center;
+    font-size: 3rem;
+}
+
+.head button{
+    padding: 10px 50px;
+    right: 50px;
+    text-decoration: none;
+    color: white;
+    background-color:#F85809;
+    border-radius: 40px;
+    border: 0;
+    text-align: center; 
+    font-size: 20px;
+    font-family:'Lexend Zetta';
+    margin-right: 50px;
+}
+#overlay{
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+.login-form{
+    font-family: 'Prompt';
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:450px;
+    height: 500px;
+    padding: 20px 30px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    transition: ease-in 0.5s;
+}
+.underline{
+    background-color: #F85809;
+    padding: 2px;
+    margin: 0px 40px;
+}
+.login-form h2{
+    text-align: center;
+    color: #222;
+    font-family: 'Prompt';
+    margin: 10px 0px 20px;
+    font-size: 30px;
+}
+.login-form .element{
+    margin: 20px 0px;
+}
+.login-form .element label{
+    font-size: 18px;
+    color: #222;
+    font-family: 'Prompt';
+}
+.element input[type="text"],.element input[type="password"]{
+    font-size: 18px;
+    font-family: 'Prompt';
+    margin: 5px;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    border:none;
+    border-bottom: 2px solid #4a4949c3;
+}
+.element input[type="checkbox"]{
+    margin-right: 5px;
+    padding: 4px;
+}
+.login-form .element button{
+    width: 100%;
+    height: 50px;
+    font-family: 'Prompt';
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: #f85909;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.login-form .element a{
+    display: block;
+    text-align: center;
+    font-family: 'Prompt';
+    font-size: 18px;
+    color: rgb(2, 144, 205);
+}
+.nav-menu{
+    padding:10px 8px;
+    background-color:#15e9cd73;
+    color: black;
+    align-items: center;
+    left:25%;
+    right:25%;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 60px;
+    backdrop-filter: blur(50px);
+    position: fixed;
+    top: 120px;
+    z-index: 2;
+    align-content: center;
+    text-align: center;
+}
+
+.nav-menu  li{
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 20px;
+    margin-right: 50px;
+    margin-left: 50px;
+    align-content: center;
+}
+.nav-items a{
+    display: flex;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Montserrat Alternates';
+    font-weight: 400;
+    font-size: 18px;
+}
+.main-page{
+    background-color: rgba(0, 0, 0, 0.75);
+    border-top-right-radius: 240px ;
+    border-bottom-right-radius: 240px ;
+    padding:25px 0;
+    z-index: 2;
+}
+.main-top{
+    display: flex;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.main-left{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    width: 50%;
+}
+.main-left h3 span{
+    color: #fafafa53;
+    font-size: 25px;
+    padding:10px 0;
+    font-family: 'Prompt';
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.main-left h3{
+    color: #15e9cdcb;
+    font-family: 'Prompt';
+    font-weight: 300; 
+    font-size: 25px;
+    padding: 5px 0;
+}
+.main-left h1{
+    font-family: 'Prompt';
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+}
+.main-left p{
+    font-size: 16px;
+    font-family: 'Prompt';
+    padding: 2px;
+
+}
+.main-left button{
+    padding: 10px 50px;
+    background-color: #F85809;
+    text-align: center;
+    border: 0px;
+    border-radius:50px ;
+}
+.btn-2 {
+    text-decoration: none;
+    color: white;
+    font-family: 'Lexend Zetta';
+    font-size: 18px;
+}
+.main-right {
+    margin-left: 100px;
+    align-content: center;
+    padding: 0 50px;
+}
+.main-bottom{
+    background-color: #f85909fb;
+    border-top-left-radius: 240px ;
+    border-bottom-left-radius: 240px ;
+    padding: 50px 0;
+}
+.bottom{
+    display: flex;
+    color: rgb(0, 0, 0);
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    z-index: 2;
+}
+.btm-right{
+    padding-top: 0px;
+    margin-left: 125px;
+    text-align: center;
+}
+.btm-right h1{
+    font-family: 'Prompt';
+    font-size: 40px;
+    text-align:left;
+    color: white;
+
+}
+.btm-right h4{
+    font-family: 'Prompt';
+    font-size: 20px;
+    text-align: left;
+    
+}
+.features{
+    display: flex;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    justify-content: space-between;
+    z-index: 2;
+   
+}
+.features h2,p{
+    font-family: 'Prompt';
+    text-align: justify;
+    padding: 25px;
+}
+.features h2{
+    font-size: 20px;
+    text-align: center;
+}
+.features i img{ 
+    border-radius:70px;
+}
+.f1{
+    text-align: center;
+    padding: 10px;
+}
+.f2{
+    text-align: center;
+    padding: 10px;
+}
+.f3{
+    text-align: center;
+    padding: 10px;
+}
+.human-tech{
+    display: flex;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-bottom: 200px;
+    align-items: center;
+    z-index: 2;
+}
+.human-tech h1,h5,h6,h4{
+    font-family: 'Prompt';
+}
+.human-left{
+    width: 50%;
+    margin-right:100px;
+}
+.human-left h5{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #F85809;
+}
+.human-left h1{
+    font-size: 35px;
+    font-weight: 500;
+}
+.human-left h4{
+    text-align: left;
+    font-size: 18px;
+    color: rgba(63, 63, 63, 0.755);
+    font-weight: 300;
+}
+.human-left h6{
+    font-size: 18px;
+    font-weight: 300;
+    margin-right: 50px;
+    margin-left: 50px;
+    text-align: justify;
+}
+.human-right{
+    width: 50%;
+    text-align: center;
+    justify-content: space-around;
+}
+.checkbox ul{
+    display: flex;
+    align-items: center;
+    text-align: right;
+    margin: 0;
+}
+.checkbox li{
+    display: flex;
+    text-align: center;
+}
+.checkbox i img{
+    height: 30px;
+    width: 30px;
+    text-align:center;
+    margin-left: 50px;
+}
+.checkbox h6{
+    margin-left: 10px;
+}
+.sec-4{
+    display: flex;
+    margin-left:200px;
+    margin-right:200px; 
+    padding-bottom: 200px;
+    justify-content: space-between;
+}
+.sec4-left{
+    width: 50%;
+}
+.sec4-left i img{
+    align-self: center;
+    text-align: center;
+    height: 360px;
+    width: 600px;
+}
+.sec4-right{
+    font-family: 'Prompt';
+    align-content: center;
+    margin-left:100px ;
+    width: 50%;
+}
+.sec4-right h3{
+    color: #F85809;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Prompt';
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+.sec4-right h1{
+    font-family: 'Prompt';
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 40px;
+}
+.sec4-right h5{
+    font-size: 18px;
+    font-weight: 300;
+    text-align: justify;
+}
+.sec-5{
+    display: flex;
+    margin-right:400px ;
+    margin-left: 400px;
+    padding-bottom: 200px;
+}
+.advantage h1 ,h4{
+    font-family: 'Prompt';
+    text-align:left;
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-weight: 500;
+}
+.advantage h4{
+    font-size: 16px;
+    padding: 0;
+}
+.advantage li{
+    list-style: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.l1{
+    display: flex;
+    align-items: center;
+}
+.l1-left {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.l1-right{
+    margin-right: 50px;
+    margin-left: 20px;
+}
+.l2{
+    display: flex;
+    align-items: center;
+}
+.l2-left {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.l2-right{
+    margin-right: 50px;
+    margin-left: 20px;
+}
+.l3{
+    display: flex;
+    align-items: center;
+}
+.l3-left {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.l3-right{
+    margin-right: 50px;
+    margin-left: 20px;
+}
+
+
+
+

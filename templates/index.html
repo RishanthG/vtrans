@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Translator</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- Link to JavaScript -->
+    <script src="/script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="/images/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div id="overlay" onclick="">
+        <form action="#">
+        <div class="login-form">
+            <h2>Log In</h2>
+            <div class="underline"></div>
+            <div class="element">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Enter your email">
+            </div>
+            <div class="element">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="element">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">Remember Me</label>
+            </div>
+            <div class="element">
+                <button id="login-page" onclick="off()">Sign In</button>
+            </div>
+            <div class="element">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+        </form>
+    </div>
+    <header>
+        <div class="head">
+            <div class="head-left">
+                <i><img src="/images/LOGO.png" alt="Description" height="75px" width="125px"></i>
+                <i><img src="/images/name.png" alt="Description" height="50px" width="225px"></i>
+             </div>
+            <button class="btn-1" onclick="on()">LOGIN</button>
+       </div>
+        <br>
+        <ul class=" nav-menu" >
+            <li class="nav-items"><a href="/">Projects</a></li>
+            <li class="nav-items"><a href="/">Services</a></li>
+            <li class="nav-items"><a href="/">About</a></li>
+            <li class="nav-items"><a href="/">Contact</a></li>
+        </ul>
+    </header>
+
+
+    <div class="container">
+
+        <h2>Speech Translator</h2><br>
+
+
+        <label for="language">🌍 Select Language:</label>
+        <br>
+        <select id="language">
+            <option value="ta">Tamil</option>
+            <option value="fr">French</option>
+            <option value="hi">Hindi</option>
+            <option value="de">German</option>
+            <option value="kn">Kannadam</option>
+            <option value="ml">Malayalam</option>
+        </select>
+        <br>
+        <br>
+        <button id="start-recording" class="glassy-button">🎙 Start Recording</button>
+
+        <div class="text-output">
+            <p id="original-text">🎤 Speak now...</p>
+            <p id="translated-text">🌐 Translation will appear here...</p>
+        </div>
+
+        <audio id="translated-audio" controls></audio>
+    </div>
+
+</body>
+</html>
