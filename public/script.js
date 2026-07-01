@@ -32,9 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
     recognition.continuous = false;
     recognition.interimResults = false;
 
+    sourceLanguage.addEventListener("change", () => {
+        recognition.lang = sourceLanguage.value;
+    });
+
     let listening = false;
 
-    recognition.lang = "en-US";
+    recognition.lang = sourceLanguage.value;
+
 
     /* ----------------------------
        Update recognition language

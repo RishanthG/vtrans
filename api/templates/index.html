@@ -18,28 +18,47 @@
 
 <body>
 
-<header class="topbar">
-
-    <div class="logo">
-
-        <img src="{{ url_for('static', filename='images/LOGO.png') }}"
-             alt="logo">
-
-        <div class="logo-text">
-
-            <h2>VTrans</h2>
-
-            <span>Voice Translator</span>
-
+ <div id="overlay">
+        <form action="#" onsubmit="return false;">
+        <div class="login-form">
+            <h2>Log In</h2>
+            <div class="underline"></div>
+            <div class="element">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Enter your email">
+            </div>
+            <div class="element">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="element">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">Remember Me</label>
+            </div>
+            <div class="element">
+                <button id="login-page" type="button" onclick="off()">Sign In</button>
+            </div>
+            <div class="element">
+                <a href="#">Forgot Password?</a>
+            </div>
         </div>
-
+        </form>
     </div>
-
-    <button class="login-btn" onclick="on()">
-        Login
-    </button>
-
-</header>
+    <header>
+        <div class="head">
+            <div class="head-left">
+                <img src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Vtrans logo" height="60" width="100">
+                <img src="{{ url_for('static', filename='images/name.png') }}" alt="Vtrans" height="40" width="180">
+             </div>
+            <button class="login-btn" type="button" onclick="on()">LOGIN</button>
+       </div>
+        <ul class="nav-menu">
+            <li class="nav-items"><a href="/">Projects</a></li>
+            <li class="nav-items"><a href="/">Services</a></li>
+            <li class="nav-items"><a href="/">About</a></li>
+            <li class="nav-items"><a href="/">Contact</a></li>
+        </ul>
+    </header>
 
 
 <div id="overlay">

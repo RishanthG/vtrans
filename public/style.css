@@ -20,61 +20,151 @@ body{
 Header
 =========================== */
 
-.topbar{
-    width:100%;
-    height:80px;
-    background:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 60px;
-    border-bottom:1px solid #dadce0;
-    position:sticky;
-    top:0;
-    z-index:100;
+.head{
+    display: flex;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    background-color:#1010108a;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    min-height: var(--header-h);
+}
+.head-left{
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+}
+.head-left img:first-child{ height: 60px; width: 100px; }
+.head-left img:last-child{ height: 40px; width: 180px; }
+
+.head button{
+    padding: 10px 28px;
+    text-decoration: none;
+    color: white;
+    background-color:#F85809;
+    border-radius: 40px;
+    border: 0;
+    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 1.05rem);
+    font-family:'Lexend Zetta', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:15px;
+/* ===== Nav ===== */
+.nav-menu{
+    padding: 10px 8px;
+    background-color:#15e9cd73;
+    color: black;
+    align-items: center;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 60px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    position: fixed;
+    top: calc(var(--header-h) + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    width: min(90vw, 640px);
+}
+.nav-menu li{
+    list-style: none;
+    text-align: center;
+    padding: 5px 16px;
+}
+.nav-items a{
+    display: flex;
+    color: black;
+    text-decoration: none;
+    font-family: 'Montserrat Alternates';
+    font-weight: 400;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    white-space: nowrap;
 }
 
-.logo img{
-    width:55px;
+/* ===== Overlay / login form ===== */
+#overlay{
+    position: fixed;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.55);
+    inset: 0;
+    z-index: 100;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem;
 }
-
-.logo-text{
-    display:flex;
-    flex-direction:column;
+.login-form{
+    font-family: 'Prompt';
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: min(450px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px 28px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 16px;
+    cursor: default;
 }
-
-.logo-text h2{
-    font-size:24px;
-    font-weight:700;
-    color:#1a73e8;
+.login-form h2{
+    text-align: center;
+    color: #222;
+    margin: 10px 0 20px;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
 }
-
-.logo-text span{
-    font-size:14px;
-    color:#5f6368;
+.underline{
+    background-color: #F85809;
+    padding: 2px;
+    margin: 0 40px;
 }
-
-.login-btn{
-    border:none;
-    background:#1a73e8;
-    color:#fff;
-    padding:12px 28px;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:15px;
-    transition:.3s;
+.login-form .element{ margin: 18px 0; }
+.login-form .element label{ font-size: 16px; color: #222; }
+.element input[type="text"],.element input[type="password"]{
+    font-size: 16px;
+    margin: 5px 0 0;
+    display: block;
+    width: 100%;
+    padding: 14px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #4a4949c3;
 }
-
-.login-btn:hover{
-    background:#1558b0;
+.element input[type="checkbox"]{ margin-right: 8px; }
+.login-form .element button{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #f85909;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    cursor: pointer;
 }
-
+.login-form .element a{
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: rgb(2, 144, 205);
+}
 /* ===========================
 Translator Container
 =========================== */
