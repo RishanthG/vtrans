@@ -1,91 +1,258 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const button = document.getElementById("start-recording");
-    const languageSelect = document.getElementById("language");
+    const sourceLanguage = document.getElementById("source-language");
+    const targetLanguage = document.getElementById("language");
+
     const originalText = document.getElementById("original-text");
     const translatedText = document.getElementById("translated-text");
     const audioElement = document.getElementById("translated-audio");
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const swapButton = document.getElementById("swap-language");
+    const copyButton = document.getElementById("copy-btn");
+    const playButton = document.getElementById("play-btn");
+    const statusText = document.getElementById("status-text");
+
+    const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
+
         button.addEventListener("click", () => {
-            alert("Speech recognition isn't supported in this browser. Try Chrome or Edge.");
+
+            alert("Speech recognition is only supported in Chrome or Edge.");
+
         });
+
         return;
     }
 
     const recognition = new SpeechRecognition();
+
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.lang = "en-US"; // language being spoken into the mic
 
     let listening = false;
 
+    recognition.lang = "en-US";
+
+    /* ----------------------------
+       Update recognition language
+    ---------------------------- */
+
+    sourceLanguage.addEventListener("change", () => {
+
+        const map = {
+            en: "en-US",
+            ta: "ta-IN",
+            hi: "hi-IN",
+            ml: "ml-IN",
+            kn: "kn-IN",
+            fr: "fr-FR",
+            de: "de-DE"
+        };
+
+        recognition.lang = map[sourceLanguage.value] || "en-US";
+
+    });
+
+    /* ----------------------------
+       Start Recording
+    ---------------------------- */
+
     button.addEventListener("click", () => {
+
         if (listening) return;
 
-        originalText.innerText = "🎤 Speak now...";
-        translatedText.innerText = "🌐 Translation will appear here...";
+        originalText.innerHTML = "🎤 Listening...";
+        translatedText.innerHTML = "Waiting for translation...";
 
         try {
+
             recognition.start();
-        } catch (err) {
-            console.error("Could not start recognition:", err);
+
+        } catch (e) {
+
+            console.log(e);
+
         }
+
     });
+
+    /* ----------------------------
+       Recognition Started
+    ---------------------------- */
 
     recognition.addEventListener("start", () => {
+
         listening = true;
-        button.innerHTML = "🎤 Listening...";
-        button.style.background = "rgba(255, 0, 0, 0.5)";
+
+        button.innerHTML =
+            "<span class='material-symbols-outlined'>mic</span> Listening...";
+
+        button.style.background = "#EA4335";
+
+        statusText.innerText = "Listening...";
+
     });
+
+    /* ----------------------------
+       Speech Result
+    ---------------------------- */
 
     recognition.addEventListener("result", (event) => {
-        const speechText = event.results[0][0].transcript;
-        originalText.innerText = "Recognized: " + speechText;
 
-        const lang = languageSelect.value;
+        const speech = event.results[0][0].transcript;
+
+        originalText.innerHTML = speech;
 
         fetch("/translate", {
+
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text: speechText, lang: lang }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.error) {
-                    alert(data.error);
-                    return;
-                }
-                translatedText.innerText = "Translated: " + data.translated_text;
-                audioElement.src = "data:audio/mp3;base64," + data.audio;
-                audioElement.play();
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify({
+
+                text: speech,
+
+                lang: targetLanguage.value
+
             })
-            .catch((error) => console.error("Error:", error));
+
+        })
+
+        .then(res => res.json())
+
+        .then(data => {
+
+            if (data.error) {
+
+                alert(data.error);
+
+                return;
+
+            }
+
+            translatedText.innerHTML = data.translated_text;
+
+            audioElement.src =
+                "data:audio/mp3;base64," + data.audio;
+
+            statusText.innerText = "Translation Complete";
+
+        })
+
+        .catch(err => {
+
+            console.log(err);
+
+            statusText.innerText = "Translation Failed";
+
+        });
+
     });
 
-    recognition.addEventListener("error", (event) => {
-        console.error("Speech recognition error:", event.error);
-        if (event.error === "no-speech") {
-            alert("Didn't catch that — please try again.");
-        } else if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-            alert("Microphone access was blocked. Please allow microphone permissions and try again.");
-        } else {
-            alert("Speech recognition error: " + event.error);
-        }
-    });
+    /* ----------------------------
+       Recognition End
+    ---------------------------- */
 
     recognition.addEventListener("end", () => {
+
         listening = false;
-        button.innerHTML = "🎙 Start Recording";
-        button.style.background = "";
+
+        button.innerHTML =
+            "<span class='material-symbols-outlined'>mic</span> Start Recording";
+
+        button.style.background = "#1A73E8";
+
+        statusText.innerText = "Ready";
+
     });
+
+    /* ----------------------------
+       Recognition Error
+    ---------------------------- */
+
+    recognition.addEventListener("error", (event) => {
+
+        listening = false;
+
+        statusText.innerText = "Error";
+
+        alert(event.error);
+
+    });
+
+    /* ----------------------------
+       Swap Languages
+    ---------------------------- */
+
+    swapButton.addEventListener("click", () => {
+
+        let temp = sourceLanguage.value;
+
+        sourceLanguage.value = targetLanguage.value;
+
+        targetLanguage.value = temp;
+
+        sourceLanguage.dispatchEvent(new Event("change"));
+
+    });
+
+    /* ----------------------------
+       Copy Translation
+    ---------------------------- */
+
+    copyButton.addEventListener("click", () => {
+
+        navigator.clipboard.writeText(translatedText.innerText);
+
+        copyButton.innerHTML =
+            "<span class='material-symbols-outlined'>done</span>";
+
+        setTimeout(() => {
+
+            copyButton.innerHTML =
+                "<span class='material-symbols-outlined'>content_copy</span>";
+
+        }, 1500);
+
+    });
+
+    /* ----------------------------
+       Play Audio
+    ---------------------------- */
+
+    playButton.addEventListener("click", () => {
+
+        if (audioElement.src) {
+
+            audioElement.play();
+
+        }
+
+    });
+
 });
 
+
+/* ===========================
+   Login Overlay
+=========================== */
+
 function on() {
-    document.getElementById("overlay").style.display = "block";
+
+    document.getElementById("overlay").style.display = "flex";
+
 }
 
 function off() {
+
     document.getElementById("overlay").style.display = "none";
+
 }

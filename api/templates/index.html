@@ -3,82 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech Translator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>VTrans - Voice Translator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='web.css') }}">
+    <script src="{{ url_for('static', filename='web.js') }}" defer></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
+
 <body>
-    <video autoplay muted loop playsinline id="background-video">
-        <source src="{{ url_for('static', filename='images/background.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
 
-    <div id="overlay">
-        <form action="#" onsubmit="return false;">
-        <div class="login-form">
-            <h2>Log In</h2>
-            <div class="underline"></div>
-            <div class="element">
-                <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Enter your email">
-            </div>
-            <div class="element">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <div class="element">
-                <input type="checkbox" name="" id="remember-me">
-                <label for="remember-me">Remember Me</label>
-            </div>
-            <div class="element">
-                <button id="login-page" type="button" onclick="off()">Sign In</button>
-            </div>
-            <div class="element">
-                <a href="#">Forgot Password?</a>
-            </div>
+<header class="topbar">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='images/LOGO.png') }}"
+             alt="logo">
+
+        <div class="logo-text">
+
+            <h2>VTrans</h2>
+
+            <span>Voice Translator</span>
+
         </div>
-        </form>
+
     </div>
 
-    <header>
-        <div class="head">
-            <div class="head-left">
-                <img src="{{ url_for('static', filename='images/LOGO.png') }}" alt="Vtrans logo" height="60" width="100">
-                <img src="{{ url_for('static', filename='images/name.png') }}" alt="Vtrans" height="40" width="180">
-             </div>
-            <button class="btn-1" type="button" onclick="on()">LOGIN</button>
-       </div>
-    </header>
+    <button class="login-btn" onclick="on()">
+        Login
+    </button>
 
-    <div class="container">
-        <h2>AI Speech Translator</h2>
-        <p class="tagline">Speak once. Understand everywhere.</p>
+</header>
 
-        <div class="field-group">
-            <label for="language">🌍 Translate to</label>
-            <select id="language">
-                <option value="ta">Tamil</option>
-                <option value="fr">French</option>
-                <option value="hi">Hindi</option>
-                <option value="de">German</option>
-                <option value="kn">Kannada</option>
-                <option value="ml">Malayalam</option>
-            </select>
-        </div>
 
-        <div class="field-group">
-            <button id="start-recording" class="glassy-button">🎙 Start Recording</button>
-        </div>
+<div id="overlay">
 
-        <div class="text-output">
-            <p id="original-text">🎤 Speak now...</p>
-            <p id="translated-text">🌐 Translation will appear here...</p>
-        </div>
+<form action="#" onsubmit="return false;">
 
-        <audio id="translated-audio" controls></audio>
+<div class="login-form">
+
+<h2>Log In</h2>
+
+<div class="underline"></div>
+
+<div class="element">
+
+<label>Email</label>
+
+<input
+type="text"
+id="email"
+placeholder="Enter your email">
+
+</div>
+
+<div class="element">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter password">
+
+</div>
+
+<div class="element remember">
+
+<input
+type="checkbox"
+id="remember-me">
+
+<label for="remember-me">
+
+Remember Me
+
+</label>
+
+</div>
+
+<div class="element">
+
+<button
+id="login-page"
+type="button"
+onclick="off()">
+
+Sign In
+
+</button>
+
+</div>
+
+<div class="element">
+
+<a href="#">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+
+<main class="translator-container">
+
+<div class="translator-header">
+
+<h1>
+
+Translate Speech Instantly
+
+</h1>
+
+<p>
+
+Speak naturally and receive real-time translations powered by AI.
+
+</p>
+
+</div>
+
+
+
+<div class="language-bar">
+
+<div class="language-card">
+
+<label>
+
+From
+
+</label>
+
+<select id="source-language">
+
+<option value="en">
+
+English
+
+</option>
+
+<option value="ta">
+
+Tamil
+
+</option>
+
+<option value="hi">
+
+Hindi
+
+</option>
+
+<option value="fr">
+
+French
+
+</option>
+
+<option value="de">
+
+German
+
+</option>
+
+<option value="ml">
+
+Malayalam
+
+</option>
+
+<option value="kn">
+
+Kannada
+
+</option>
+
+</select>
+
+</div>
+
+
+
+<button
+id="swap-language"
+class="swap-btn">
+
+<span class="material-symbols-outlined">
+
+swap_horiz
+
+</span>
+
+</button>
+
+
+
+<div class="language-card">
+
+<label>
+
+To
+
+</label>
+
+<select id="language">
+
+<option value="ta">
+
+Tamil
+
+</option>
+
+<option value="hi">
+
+Hindi
+
+</option>
+
+<option value="fr">
+
+French
+
+</option>
+
+<option value="de">
+
+German
+
+</option>
+
+<option value="ml">
+
+Malayalam
+
+</option>
+
+<option value="kn">
+
+Kannada
+
+</option>
+
+<option value="en">
+
+English
+
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+
+<div class="translation-wrapper">
+
+<div class="translation-card input-card">
+
+<div class="card-header">
+
+<span>
+
+You Speak
+
+</span>
+
+</div>
+
+<div class="card-body">
+
+<p id="original-text">
+
+Press the microphone and start speaking...
+
+</p>
+
+</div>
+<div class="card-footer">
+
+    <button id="start-recording" class="primary-btn">
+
+        <span class="material-symbols-outlined">
+            mic
+        </span>
+
+        Start Recording
+
+    </button>
+
+</div>
+
+</div>
+
+
+
+<div class="translation-card output-card">
+
+<div class="card-header">
+
+    <span>
+
+        Translation
+
+    </span>
+
+    <div class="actions">
+
+        <button id="copy-btn" class="icon-btn">
+
+            <span class="material-symbols-outlined">
+
+                content_copy
+
+            </span>
+
+        </button>
+
+        <button id="play-btn" class="icon-btn">
+
+            <span class="material-symbols-outlined">
+
+                volume_up
+
+            </span>
+
+        </button>
+
     </div>
+
+</div>
+
+<div class="card-body">
+
+    <p id="translated-text">
+
+        Your translated text will appear here...
+
+    </p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="audio-section">
+
+<audio
+id="translated-audio"
+controls>
+
+</audio>
+
+</div>
+
+
+
+<div class="status-area">
+
+<div class="pulse-circle"></div>
+
+<p id="status-text">
+
+Ready to translate
+
+</p>
+
+</div>
+
+
+
+</main>
+
+
+
+<footer>
+
+<p>
+
+Powered by VTrans AI • Real-time Voice Translation
+
+</p>
+
+</footer>
 
 </body>
+
 </html>
