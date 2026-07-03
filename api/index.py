@@ -28,13 +28,18 @@ app = Flask(
 
 @app.route("/")
 def home():
+    template_path = os.path.join(TEMPLATE_DIR, "index.html")
+    if not os.path.exists(template_path):
+        return (
+            jsonify(
+                {
+                    "error": "index.html not found.",
+                    "expected_location": template_path,
+                }
+            ),
+            500,
+        )
     return render_template("index.html")
-
-
-@app.route("/")
-def speak():
-    return render_template("index.html")
-
 
 @app.route("/translate", methods=["POST"])
 def translate():
